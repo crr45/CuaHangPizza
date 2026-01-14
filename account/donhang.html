@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Theo Dõi Đơn Hàng - Pizza Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#d94637",
+                        "primary-content": "#ffffff",
+                        "primary-light": "#fceaea",
+                        "secondary": "#fecd1a",
+                        "background-light": "#F7FAFC",
+                        "background-dark": "#1A202C",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#2D3748",
+                        "text-main": "#1A202C",
+                        "text-secondary": "#4A5568",
+                    },
+                    fontFamily: {
+                        "display": ["Work Sans", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-text-main antialiased min-h-screen flex flex-col overflow-hidden">
+<script>
+    // Simple admin check
+    if (localStorage.getItem('isAdmin') !== 'true') {
+        alert('Vui lòng đăng nhập với quyền Admin!');
+        window.location.href = 'my-account.html';
+    }
+</script>
+<div class="flex h-screen w-full overflow-hidden">
+<aside class="w-64 flex-col bg-surface-light dark:bg-surface-dark border-r border-gray-200 dark:border-gray-800 hidden md:flex z-20">
+<div class="h-16 flex items-center justify-center px-6 border-b border-gray-100 dark:border-gray-800">
+    <img src="../content/uploads/logo.png" alt="Pizza Shop Logo" style="height: 40px;">
+</div>
+<nav class="flex-1 overflow-y-auto py-6 px-4 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-secondary hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors group" href="admin.html">
+<span class="material-symbols-outlined group-hover:text-primary">dashboard</span>
+<span>Tổng quan</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary font-medium group transition-colors" href="donhang.html">
+<span class="material-symbols-outlined fill-1">shopping_bag</span>
+<span>Đơn hàng</span>
+<span id="admin-order-count" class="ml-auto bg-primary text-white text-xs font-bold px-2 py-0.5 rounded-full">0</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-secondary hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">inventory_2</span>
+<span>Kho hàng</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-secondary hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">restaurant_menu</span>
+<span>Sản phẩm</span>
+</a>
+</nav>
+<div class="p-4 border-t border-gray-100 dark:border-gray-800">
+<div class="mt-4 flex items-center gap-3 px-3">
+<div class="size-10 rounded-full bg-cover bg-center border border-gray-200 dark:border-gray-700" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCMxzEC-wh4nEHILjbgyE_0sHX6gPyKg148pNHE6Mb9c8i7kBGznjcdibXenL2X8Dbq8E3EUWsM8ZhCuFZvtzu7Ge-TWtJn1LVwyWiLIa7Y5Hc5xCHuqYOjDr6J0gw9cuHhulMojxC3seAtP-WPe2oB_yfuQkMoIBOzbKHLn_p7rsa5rcZRov2WZf04sSgRKGjmVBlznGqybx77OGyDvrqlUgbIIs3C7i7YyXVoIXZ0v2q6aEcDuGJuqYqNb-hJbE-32vx5RZpChXc');"></div>
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-text-main dark:text-white">Trần Minh</span>
+<span class="text-xs text-text-secondary">Quản lý</span>
+</div>
+</div>
+</div>
+</aside>
+<div class="flex-1 flex flex-col h-full overflow-hidden relative">
+<header class="h-16 flex items-center justify-between px-6 bg-surface-light dark:bg-surface-dark border-b border-gray-200 dark:border-gray-800 z-10 shrink-0">
+<button class="md:hidden text-text-secondary hover:text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="hidden md:flex w-full max-w-md items-center gap-2 bg-background-light dark:bg-background-dark/50 rounded-lg px-3 py-2 ml-4">
+<span class="material-symbols-outlined text-text-secondary">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full text-text-main dark:text-white placeholder-text-secondary/70" placeholder="Tìm kiếm đơn hàng..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="relative p-2 text-text-secondary hover:text-primary transition-colors rounded-full hover:bg-gray-50 dark:hover:bg-gray-800/50">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 size-2.5 bg-red-500 rounded-full border-2 border-white dark:border-surface-dark"></span>
+</button>
+</div>
+</header>
+<main class="flex-1 overflow-y-auto p-4 md:p-8 scrollbar-hide">
+<div class="max-w-7xl mx-auto space-y-6">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div>
+<h1 class="text-2xl font-bold text-text-main dark:text-white">Quản Lý Đơn Hàng</h1>
+<p class="text-text-secondary text-sm mt-1">Theo dõi và cập nhật trạng thái đơn hàng thời gian thực.</p>
+</div>
+</div>
+
+<div id="order-tracking-list" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 md:gap-6">
+    <!-- Orders dynamically rendered here -->
+</div>
+</div>
+</main>
+</div>
+</div>
+
+<!-- Order Detail Modal -->
+<div id="order-detail-modal" style="display:none; position:fixed; z-index:10001; left:0; top:0; width:100%; height:100%; background-color:rgba(0,0,0,0.5); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); align-items:center; justify-content:center; color: #1A202C;">
+    <div class="bg-white dark:bg-surface-dark p-6 rounded-xl shadow-xl max-w-lg w-[90%] max-h-[80vh] overflow-y-auto relative border border-gray-200 dark:border-gray-700">
+        <button id="close-detail-modal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 dark:hover:text-white">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+        <h2 class="text-xl font-bold mb-4 border-b pb-2 dark:text-white">Chi tiết khách hàng</h2>
+        <div id="order-detail-content" class="space-y-4 text-left">
+            <!-- Content will be injected here -->
+        </div>
+    </div>
+</div>
+
+<script src="../pizza-cart.js"></script>
+</body></html>

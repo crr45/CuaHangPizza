@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html class="dark" lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+<script>
+tailwind.config = {
+    darkMode: "class",
+    theme: {
+        extend: {
+            colors: {
+                primary: "#f20d0d",
+                "accent-orange": "#f59e0b",
+                "background-light": "#f8f5f5",
+                "background-dark": "#181111",
+            },
+            fontFamily: {
+                display: ["Be Vietnam Pro"]
+            },
+            borderRadius: {
+                DEFAULT: "0.5rem",
+                lg: "1rem",
+                xl: "1.5rem",
+                full: "9999px"
+            },
+        },
+    },
+}
+</script>
+
+<style>
+body {
+    font-family: "Be Vietnam Pro", sans-serif;
+}
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+</style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-white min-h-screen">
+
+<!-- MAIN -->
+<main class="min-h-screen flex flex-col md:flex-row overflow-hidden">
+
+    <!-- LEFT: HERO IMAGE -->
+    <div class="hidden md:block md:w-1/2 lg:w-3/5 relative overflow-hidden group">
+        <div class="absolute inset-0 bg-gradient-to-r from-background-dark/80 to-transparent z-10"></div>
+
+        <div class="absolute bottom-10 left-10 z-20 max-w-sm">
+            <span class="inline-block bg-accent-orange text-background-dark text-xs font-bold px-3 py-1 rounded-full mb-3 uppercase tracking-widest">
+                Khuyến mãi mới
+            </span>
+            <h3 class="text-3xl lg:text-4xl font-bold text-white mb-3 leading-tight">
+                Thưởng thức Pizza nóng hổi cùng AI
+            </h3>
+            <p class="text-white/80 text-base">
+                Hệ thống gợi ý món ăn theo sở thích của bạn với độ chính xác cao nhất.
+            </p>
+        </div>
+
+        <div
+            class="w-full h-full bg-center bg-no-repeat bg-cover transition-transform duration-700 group-hover:scale-105"
+            style='background-image:url("https://lh3.googleusercontent.com/aida-public/AB6AXuB_H-3lvagB9DvKmP2siu_cbK0NljRYXMUBNnJbUZVnVyDiIi9moxeGZPfzkJ-HlqMRWr91y_TExewzy_elaDnz8P2Urez69z0qiAYFMtzJT-Tc5XpzCBa7tZHqIc2eFUS1rzGnMJcAi6KHpkLDkEmbbB9cFcfLzbR_Aclm7e6ae3OD_BeMCKMP-7K2RCMGkTP19zpV0r-2nWTeoG7WthtsB6dEpmli7iCc7D5khMqB-0Y4pm5Riy4u4rdhuebv4-BJN2jUep4IOhId");'>
+        </div>
+    </div>
+
+    <!-- RIGHT: LOGIN -->
+    <div class="w-full md:w-1/2 lg:w-2/5 flex items-center justify-center p-6 lg:p-10 bg-background-dark">
+        <div class="w-full max-w-[380px] flex flex-col">
+
+            <!-- Tab Switcher -->
+            <div class="flex border-b border-gray-700 mb-6">
+                <button id="customer-tab-btn" class="flex-1 py-3 text-sm font-bold border-b-2 border-primary text-white">Khách hàng</button>
+                <button id="staff-tab-btn" class="flex-1 py-3 text-sm font-bold text-white/60 border-b-2 border-transparent">Nhân viên</button>
+            </div>
+
+            <!-- Customer Login Form -->
+            <div id="customer-login">
+                <div class="mb-6">
+                    <h1 class="text-white text-2xl font-bold mb-1">Đăng Nhập Khách Hàng</h1>
+                    <p class="text-white/60 text-sm">Chào mừng bạn quay trở lại với Pizza AI.</p>
+                </div>
+
+                <form class="space-y-4">
+                    <div>
+                        <label class="text-sm text-white px-1">Email hoặc Số điện thoại</label>
+                        <div class="relative mt-1">
+                            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#ba9c9c]">person</span>
+                            <input class="w-full h-12 pl-10 pr-4 rounded-xl bg-[#271b1b] border border-[#543b3b] text-white focus:ring-2 focus:ring-primary/50" placeholder="Nhập email hoặc số điện thoại"/>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between px-1 text-sm">
+                            <label class="text-white">Mật khẩu</label>
+                            <a href="#" class="text-accent-orange hover:underline">Quên mật khẩu?</a>
+                        </div>
+                        <div class="relative mt-1">
+                            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#ba9c9c]">lock</span>
+                            <input type="password" class="w-full h-12 pl-10 pr-4 rounded-xl bg-[#271b1b] border border-[#543b3b] text-white" placeholder="••••••••"/>
+                        </div>
+                    </div>
+
+                    <a href="/web/index.html" class="w-full bg-primary hover:bg-primary/90 py-3 rounded-xl font-bold flex justify-center items-center gap-2">
+                        Đăng nhập
+                        <span class="material-symbols-outlined">arrow_forward</span>
+                    </a>
+                </form>
+
+                <div class="my-6 text-center text-xs text-white/40 uppercase tracking-widest">
+                    Hoặc đăng nhập nhanh
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 mb-6">
+                    <button class="h-11 rounded-xl bg-[#271b1b] border border-[#543b3b] text-white">Google</button>
+                    <button class="h-11 rounded-xl bg-[#271b1b] border border-[#543b3b] text-white">Facebook</button>
+                </div>
+
+                <p class="text-center text-sm text-white/60">
+                    Chưa có tài khoản?
+                    <a href="dangky.html" class="text-primary font-bold hover:underline">Đăng ký</a>
+                </p>
+            </div>
+            
+            <!-- Staff/Admin Login Form -->
+            <div id="staff-login" class="hidden">
+                 <div class="mb-6">
+                    <h1 class="text-white text-2xl font-bold mb-1">Đăng Nhập Nội Bộ</h1>
+                    <p class="text-white/60 text-sm">Dành cho nhân viên và quản trị viên.</p>
+                </div>
+                <form id="staff-login-form" class="space-y-4">
+                     <div>
+                        <label class="text-sm text-white px-1">Tên đăng nhập</label>
+                        <div class="relative mt-1">
+                            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#ba9c9c]">account_circle</span>
+                            <input id="staff-username" class="w-full h-12 pl-10 pr-4 rounded-xl bg-[#271b1b] border border-[#543b3b] text-white focus:ring-2 focus:ring-primary/50" placeholder="admin hoặc staff"/>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="text-sm text-white px-1">Mật khẩu</label>
+                        <div class="relative mt-1">
+                            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#ba9c9c]">lock</span>
+                            <input id="staff-password" type="password" class="w-full h-12 pl-10 pr-4 rounded-xl bg-[#271b1b] border border-[#543b3b] text-white" placeholder="••••••••"/>
+                        </div>
+                    </div>
+                    <p id="staff-login-error" class="text-red-500 text-sm text-center hidden">Tên đăng nhập hoặc mật khẩu không đúng.</p>
+                    <button type="submit" class="w-full bg-primary hover:bg-primary/90 py-3 rounded-xl font-bold flex justify-center items-center gap-2">
+                        Đăng nhập
+                        <span class="material-symbols-outlined">login</span>
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+<script>
+    const customerTabBtn = document.getElementById('customer-tab-btn');
+    const staffTabBtn = document.getElementById('staff-tab-btn');
+    const customerLogin = document.getElementById('customer-login');
+    const staffLogin = document.getElementById('staff-login');
+    const staffLoginForm = document.getElementById('staff-login-form');
+    const staffLoginError = document.getElementById('staff-login-error');
+
+    customerTabBtn.addEventListener('click', () => {
+        customerLogin.classList.remove('hidden');
+        staffLogin.classList.add('hidden');
+        customerTabBtn.classList.add('border-primary', 'text-white');
+        customerTabBtn.classList.remove('text-white/60', 'border-transparent');
+        staffTabBtn.classList.add('text-white/60', 'border-transparent');
+        staffTabBtn.classList.remove('border-primary', 'text-white');
+    });
+
+    staffTabBtn.addEventListener('click', () => {
+        staffLogin.classList.remove('hidden');
+        customerLogin.classList.add('hidden');
+        staffTabBtn.classList.add('border-primary', 'text-white');
+        staffTabBtn.classList.remove('text-white/60', 'border-transparent');
+        customerTabBtn.classList.add('text-white/60', 'border-transparent');
+        customerTabBtn.classList.remove('border-primary', 'text-white');
+    });
+
+    staffLoginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const username = document.getElementById('staff-username').value;
+        const password = document.getElementById('staff-password').value;
+
+        if ((username === 'admin' && password === 'admin123') || (username === 'staff' && password === 'staff123')) {
+            staffLoginError.classList.add('hidden');
+            localStorage.setItem('isAdmin', 'true');
+            window.location.href = 'admin.html';
+        } else {
+            staffLoginError.classList.remove('hidden');
+        }
+    });
+</script>
+</body>
+</html>

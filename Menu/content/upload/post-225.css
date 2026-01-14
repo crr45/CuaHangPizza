@@ -1,0 +1,232 @@
+.elementor-225 .elementor-element.elementor-element-66d28d2:not(.elementor-motion-effects-element-type-background), .elementor-225 .elementor-element.elementor-element-66d28d2 > .elementor-motion-effects-container > .elementor-motion-effects-layer {
+    background-color: var( --e-global-color-a58ef73 );
+}
+
+.elementor-225 .elementor-element.elementor-element-66d28d2 > .elementor-container {
+    min-height: 200px;
+}
+
+.elementor-225 .elementor-element.elementor-element-66d28d2 {
+    transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
+    padding: 0px 0px 20px 0px;
+}
+
+.elementor-225 .elementor-element.elementor-element-66d28d2 > .elementor-background-overlay {
+    transition: background 0.3s, border-radius 0.3s, opacity 0.3s;
+}
+
+.elementor-widget-theme-archive-title .elementor-heading-title {
+    font-family: var( --e-global-typography-primary-font-family ), Sans-serif;
+    font-weight: var( --e-global-typography-primary-font-weight );
+    color: var( --e-global-color-primary );
+}
+
+.elementor-225 .elementor-element.elementor-element-4933334 {
+    text-align: center;
+}
+
+.elementor-225 .elementor-element.elementor-element-4933334 .elementor-heading-title {
+    font-family: "Poppins", Sans-serif;
+    font-size: 3em;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var( --e-global-color-914bb70 );
+}
+
+.elementor-225 .elementor-element.elementor-element-74defcb > .elementor-container > .elementor-column > .elementor-widget-wrap {
+    align-content: center;
+    align-items: center;
+}
+
+.elementor-225 .elementor-element.elementor-element-74defcb {
+    margin-top: -35px;
+    margin-bottom: 0px;
+}
+
+.elementor-225 .elementor-element.elementor-element-3cb634b:not(.elementor-motion-effects-element-type-background) > .elementor-widget-wrap, .elementor-225 .elementor-element.elementor-element-3cb634b > .elementor-widget-wrap > .elementor-motion-effects-container > .elementor-motion-effects-layer {
+    background-color: var( --e-global-color-f7e1b35 );
+}
+
+.elementor-225 .elementor-element.elementor-element-3cb634b > .elementor-element-populated, .elementor-225 .elementor-element.elementor-element-3cb634b > .elementor-element-populated > .elementor-background-overlay, .elementor-225 .elementor-element.elementor-element-3cb634b > .elementor-background-slideshow {
+    border-radius: 10px 10px 10px 10px;
+}
+
+.elementor-225 .elementor-element.elementor-element-3cb634b > .elementor-element-populated {
+    transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
+    padding: 0px 20px 0px 20px;
+}
+
+.elementor-225 .elementor-element.elementor-element-3cb634b > .elementor-element-populated > .elementor-background-overlay {
+    transition: background 0.3s, border-radius 0.3s, opacity 0.3s;
+}
+
+.elementor-225 .elementor-element.elementor-element-bbba23b > .elementor-container > .elementor-column > .elementor-widget-wrap {
+    align-content: center;
+    align-items: center;
+}
+
+.elementor-225 .elementor-element.elementor-element-bbba23b {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.elementor-widget-heading .elementor-heading-title {
+    font-family: var( --e-global-typography-primary-font-family ), Sans-serif;
+    font-weight: var( --e-global-typography-primary-font-weight );
+    color: var( --e-global-color-primary );
+}
+
+.elementor-225 .elementor-element.elementor-element-14ce987 .elementor-heading-title {
+    font-family: "Poppins", Sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #FFFFFF;
+}
+
+.elementor-225 .elementor-element.elementor-element-b7f4463 > .elementor-widget-container {
+    margin: 0px 0px -20px 0px;
+}
+
+.elementor-225 .elementor-element.elementor-element-a88a7a4 .elementor-heading-title {
+    font-family: "Poppins", Sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #FFFFFF;
+}
+
+.elementor-225 .elementor-element.elementor-element-3f0727a > .elementor-widget-container {
+    margin: 0px 0px -20px 0px;
+}
+
+.elementor-widget-wc-archive-products.elementor-wc-products ul.products li.product .woocommerce-loop-product__title {
+    color: var( --e-global-color-primary );
+}
+
+.elementor-widget-wc-archive-products.elementor-wc-products ul.products li.product .woocommerce-loop-category__title {
+    color: var( --e-global-color-primary );
+}
+
+.elementor-widget-wc-archive-products.elementor-wc-products ul.products li.product .woocommerce-loop-product__title, .elementor-widget-wc-archive-products.elementor-wc-products ul.products li.product .woocommerce-loop-category__title {
+    font-family: var( --e-global-typography-primary-font-family ), Sans-serif;
+    font-weight: var( --e-global-typography-primary-font-weight );
+}
+
+.elementor-widget-wc-archive-products.elementor-wc-products ul.products li.product .price {
+    color: var( --e-global-color-primary );
+    font-family: var( --e-global-typography-primary-font-family ), Sans-serif;
+    font-weight: var( --e-global-typography-primary-font-weight );
+}
+
+.elementor-widget-wc-archive-products.elementor-wc-products ul.products li.product .price ins {
+    color: var( --e-global-color-primary );
+}
+
+.elementor-widget-wc-archive-products.elementor-wc-products ul.products li.product .price ins .amount {
+    color: var( --e-global-color-primary );
+}
+
+.elementor-widget-wc-archive-products {
+    --products-title-color: var( --e-global-color-primary );
+}
+
+.elementor-widget-wc-archive-products.products-heading-show .related-products > h2, .elementor-widget-wc-archive-products.products-heading-show .upsells > h2, .elementor-widget-wc-archive-products.products-heading-show .cross-sells > h2 {
+    font-family: var( --e-global-typography-primary-font-family ), Sans-serif;
+    font-weight: var( --e-global-typography-primary-font-weight );
+}
+
+.elementor-widget-wc-archive-products.elementor-wc-products ul.products li.product .price del {
+    color: var( --e-global-color-primary );
+}
+
+.elementor-widget-wc-archive-products.elementor-wc-products ul.products li.product .price del .amount {
+    color: var( --e-global-color-primary );
+}
+
+.elementor-widget-wc-archive-products.elementor-wc-products ul.products li.product .price del {
+    font-family: var( --e-global-typography-primary-font-family ), Sans-serif;
+    font-weight: var( --e-global-typography-primary-font-weight );
+}
+
+.elementor-widget-wc-archive-products.elementor-wc-products ul.products li.product .button {
+    font-family: var( --e-global-typography-accent-font-family ), Sans-serif;
+    font-weight: var( --e-global-typography-accent-font-weight );
+}
+
+.elementor-widget-wc-archive-products.elementor-wc-products .added_to_cart {
+    font-family: var( --e-global-typography-accent-font-family ), Sans-serif;
+    font-weight: var( --e-global-typography-accent-font-weight );
+}
+
+.elementor-widget-wc-archive-products .elementor-products-nothing-found {
+    color: var( --e-global-color-text );
+    font-family: var( --e-global-typography-text-font-family ), Sans-serif;
+    font-weight: var( --e-global-typography-text-font-weight );
+}
+
+.elementor-225 .elementor-element.elementor-element-9cacd89.elementor-wc-products ul.products li.product {
+    text-align: center;
+}
+
+.elementor-225 .elementor-element.elementor-element-9cacd89.elementor-wc-products ul.products {
+    grid-column-gap: 20px;
+    grid-row-gap: 40px;
+}
+
+.elementor-225 .elementor-element.elementor-element-9cacd89.elementor-wc-products ul.products li.product .woocommerce-loop-product__title {
+    color: var( --e-global-color-kadence3 );
+}
+
+.elementor-225 .elementor-element.elementor-element-9cacd89.elementor-wc-products ul.products li.product .woocommerce-loop-category__title {
+    color: var( --e-global-color-kadence3 );
+}
+
+.elementor-225 .elementor-element.elementor-element-9cacd89.elementor-wc-products ul.products li.product .price {
+    color: var( --e-global-color-a58ef73 );
+    font-family: "Roboto", Sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.elementor-225 .elementor-element.elementor-element-9cacd89.elementor-wc-products ul.products li.product .price ins {
+    color: var( --e-global-color-a58ef73 );
+}
+
+.elementor-225 .elementor-element.elementor-element-9cacd89.elementor-wc-products ul.products li.product .price ins .amount {
+    color: var( --e-global-color-a58ef73 );
+}
+
+.elementor-225 .elementor-element.elementor-element-9cacd89.elementor-wc-products ul.products li.product span.onsale {
+    display: block;
+}
+
+@media(min-width: 768px) {
+    .elementor-225 .elementor-element.elementor-element-8dda3eb {
+        width:16%;
+    }
+
+    .elementor-225 .elementor-element.elementor-element-5c1516b {
+        width: 34%;
+    }
+
+    .elementor-225 .elementor-element.elementor-element-5efbb5d {
+        width: 15%;
+    }
+
+    .elementor-225 .elementor-element.elementor-element-2cdc672 {
+        width: 35%;
+    }
+}
+
+@media(max-width: 1024px) {
+    .elementor-225 .elementor-element.elementor-element-9cacd89.elementor-wc-products ul.products {
+        grid-column-gap:20px;
+        grid-row-gap: 40px;
+    }
+}
+
+@media(max-width: 767px) {
+    .elementor-225 .elementor-element.elementor-element-9cacd89.elementor-wc-products ul.products {
+        grid-column-gap:20px;
+        grid-row-gap: 40px;
+    }
+}
