@@ -63,17 +63,17 @@ body {
 <p class="text-[#baab9c]">Bắt đầu hành trình thưởng thức Pizza công nghệ cao cùng chúng tôi.</p>
 </div>
 
-<form class="flex flex-col gap-4">
+<form id="register-form" class="flex flex-col gap-4">
 
 <div class="flex flex-col gap-2">
 <label class="text-sm">Họ và tên</label>
-<input class="h-14 rounded-xl bg-[#181411] border border-[#54473b] px-4 text-white focus:ring-2 focus:ring-primary" placeholder="Nhập họ và tên"/>
+<input id="reg-fullname" required class="h-14 rounded-xl bg-[#181411] border border-[#54473b] px-4 text-white focus:ring-2 focus:ring-primary" placeholder="Nhập họ và tên"/>
 </div>
 
 <div class="flex flex-col gap-2">
 <label class="text-sm">Số điện thoại</label>
 <div class="flex gap-2">
-<input class="flex-1 h-14 rounded-xl bg-[#181411] border border-[#54473b] px-4 text-white focus:ring-2 focus:ring-primary" placeholder="090xxxxxxx"/>
+<input id="reg-phone" required class="flex-1 h-14 rounded-xl bg-[#181411] border border-[#54473b] px-4 text-white focus:ring-2 focus:ring-primary" placeholder="090xxxxxxx"/>
 <button type="button" class="h-14 px-4 rounded-xl bg-primary/20 text-primary border border-primary/30 font-bold">
 Gửi OTP
 </button>
@@ -82,25 +82,25 @@ Gửi OTP
 
 <div class="flex flex-col gap-2">
 <label class="text-sm">Email</label>
-<input class="h-14 rounded-xl bg-[#181411] border border-[#54473b] px-4 text-white focus:ring-2 focus:ring-primary" placeholder="email@vi-du.com"/>
+<input id="reg-email" required type="email" class="h-14 rounded-xl bg-[#181411] border border-[#54473b] px-4 text-white focus:ring-2 focus:ring-primary" placeholder="email@vi-du.com"/>
 </div>
 
 <div class="grid md:grid-cols-2 gap-4">
-<input class="h-14 rounded-xl bg-[#181411] border border-[#54473b] px-4 text-white" placeholder="Mật khẩu" type="password"/>
-<input class="h-14 rounded-xl bg-[#181411] border border-[#54473b] px-4 text-white" placeholder="Xác nhận mật khẩu" type="password"/>
+<input id="reg-password" required class="h-14 rounded-xl bg-[#181411] border border-[#54473b] px-4 text-white" placeholder="Mật khẩu" type="password"/>
+<input id="reg-confirm-password" required class="h-14 rounded-xl bg-[#181411] border border-[#54473b] px-4 text-white" placeholder="Xác nhận mật khẩu" type="password"/>
 </div>
 
 <div class="flex items-center gap-3">
-<input type="checkbox" class="size-5 accent-primary"/>
+<input id="reg-agree" type="checkbox" required class="size-5 accent-primary"/>
 <label class="text-sm text-[#baab9c]">Tôi đồng ý điều khoản sử dụng</label>
 </div>
 
-<a href="my-account.html"
+<button type="submit"
    class="block w-full h-14 rounded-full bg-primary text-lg font-bold
           flex items-center justify-center
           hover:scale-[1.01] transition">
     Đăng Ký Ngay
-</a>
+</button>
 
 
 </form>
@@ -114,8 +114,50 @@ style='background-image:linear-gradient(0deg,rgba(24,20,17,.9),rgba(24,20,17,.2)
 </div>
 </main>
 
-<footer class="py-6 text-center">
+<script>
+    document.getElementById('register-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const fullname = document.getElementById('reg-fullname').value;
+        const phone = document.getElementById('reg-phone').value;
+        const email = document.getElementById('reg-email').value;
+        const password = document.getElementById('reg-password').value;
+        const confirmPassword = document.getElementById('reg-confirm-password').value;
 
+        if (password !== confirmPassword) {
+            alert('Mật khẩu không khớp!');
+            return;
+        }
+
+        const users = JSON.parse(localStorage.getItem('pizzaUsers')) || [];
+        
+        // Check if user already exists
+        if (users.some(u => u.email === email || u.phone === phone)) {
+            alert('Email hoặc số điện thoại đã được đăng ký!');
+            return;
+        }
+
+        const newUser = {
+            fullname,
+            phone,
+            email,
+            password,
+            role: 'customer'
+        };
+
+        users.push(newUser);
+        localStorage.setItem('pizzaUsers', JSON.stringify(users));
+        
+        alert('Đăng ký thành công! Vui lòng đăng nhập.');
+        window.location.href = 'my-account.html';
+    });
+</script>
+
+<footer class="py-6 text-center">
+    <p class="text-sm text-[#baab9c]">
+        Đã có tài khoản? 
+        <a href="my-account.html" class="text-primary font-bold hover:underline">Đăng nhập ngay</a>
+    </p>
 </footer>
 
 </div>

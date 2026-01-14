@@ -87,12 +87,12 @@ body {
                     <p class="text-white/60 text-sm">Chào mừng bạn quay trở lại với Pizza AI.</p>
                 </div>
 
-                <form class="space-y-4">
+                <form id="customer-login-form" class="space-y-4">
                     <div>
                         <label class="text-sm text-white px-1">Email hoặc Số điện thoại</label>
                         <div class="relative mt-1">
                             <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#ba9c9c]">person</span>
-                            <input class="w-full h-12 pl-10 pr-4 rounded-xl bg-[#271b1b] border border-[#543b3b] text-white focus:ring-2 focus:ring-primary/50" placeholder="Nhập email hoặc số điện thoại"/>
+                            <input id="customer-identity" required class="w-full h-12 pl-10 pr-4 rounded-xl bg-[#271b1b] border border-[#543b3b] text-white focus:ring-2 focus:ring-primary/50" placeholder="Nhập email hoặc số điện thoại"/>
                         </div>
                     </div>
 
@@ -103,14 +103,16 @@ body {
                         </div>
                         <div class="relative mt-1">
                             <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#ba9c9c]">lock</span>
-                            <input type="password" class="w-full h-12 pl-10 pr-4 rounded-xl bg-[#271b1b] border border-[#543b3b] text-white" placeholder="••••••••"/>
+                            <input id="customer-password" required type="password" class="w-full h-12 pl-10 pr-4 rounded-xl bg-[#271b1b] border border-[#543b3b] text-white" placeholder="••••••••"/>
                         </div>
                     </div>
 
-                    <a href="/web/index.html" class="w-full bg-primary hover:bg-primary/90 py-3 rounded-xl font-bold flex justify-center items-center gap-2">
+                    <p id="customer-login-error" class="text-red-500 text-sm text-center hidden">Thông tin đăng nhập không chính xác.</p>
+
+                    <button type="submit" class="w-full bg-primary hover:bg-primary/90 py-3 rounded-xl font-bold flex justify-center items-center gap-2">
                         Đăng nhập
                         <span class="material-symbols-outlined">arrow_forward</span>
-                    </a>
+                    </button>
                 </form>
 
                 <div class="my-6 text-center text-xs text-white/40 uppercase tracking-widest">
@@ -166,6 +168,8 @@ body {
     const staffTabBtn = document.getElementById('staff-tab-btn');
     const customerLogin = document.getElementById('customer-login');
     const staffLogin = document.getElementById('staff-login');
+    const customerLoginForm = document.getElementById('customer-login-form');
+    const customerLoginError = document.getElementById('customer-login-error');
     const staffLoginForm = document.getElementById('staff-login-form');
     const staffLoginError = document.getElementById('staff-login-error');
 
@@ -187,6 +191,26 @@ body {
         customerTabBtn.classList.remove('border-primary', 'text-white');
     });
 
+    customerLoginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const identity = document.getElementById('customer-identity').value;
+        const password = document.getElementById('customer-password').value;
+        const users = JSON.parse(localStorage.getItem('pizzaUsers')) || [];
+
+        const user = users.find(u => (u.email === identity || u.phone === identity) && u.password === password);
+
+        if (user) {
+            customerLoginError.classList.add('hidden');
+            localStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('isAdmin', 'false');
+            localStorage.setItem('userRole', 'customer');
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            window.location.href = '../index.html';
+        } else {
+            customerLoginError.classList.remove('hidden');
+        }
+    });
+
     staffLoginForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const username = document.getElementById('staff-username').value;
@@ -194,7 +218,10 @@ body {
 
         if ((username === 'admin' && password === 'admin123') || (username === 'staff' && password === 'staff123')) {
             staffLoginError.classList.add('hidden');
+            localStorage.setItem('isLoggedIn', 'true');
             localStorage.setItem('isAdmin', 'true');
+            localStorage.setItem('userRole', 'admin');
+            localStorage.setItem('currentUser', JSON.stringify({ fullname: 'Administrator', username: username }));
             window.location.href = 'admin.html';
         } else {
             staffLoginError.classList.remove('hidden');

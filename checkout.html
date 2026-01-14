@@ -1265,6 +1265,12 @@
         </style>
     </head>
     <body class="wp-singular page-template-default page page-id-8 wp-custom-logo wp-embed-responsive wp-theme-kadence theme-kadence woocommerce-checkout woocommerce-page woocommerce-no-js footer-on-bottom hide-focus-outline link-style-standard content-title-style-above content-width-normal content-style-boxed content-vertical-padding-show non-transparent-header mobile-non-transparent-header kadence-elementor-colors elementor-default elementor-kit-37">
+        <script>
+            if (localStorage.getItem('isLoggedIn') !== 'true') {
+                alert('Vui lòng đăng nhập để tiếp tục thanh toán!');
+                window.location.href = 'account/my-account.html';
+            }
+        </script>
         <div id="wrapper" class="site wp-site-blocks">
             <a class="skip-link screen-reader-text scroll-ignore" href="#main">Bỏ qua nội dung</a>
             <header id="masthead" class="site-header" role="banner" itemtype="https://schema.org/WPHeader" itemscope>

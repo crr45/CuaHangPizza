@@ -156,6 +156,17 @@ document.addEventListener('DOMContentLoaded', function () {
     const modalEl = document.getElementById('order-detail-modal');
     if (modalEl) modalEl.onclick = (e) => { if (e.target === modalEl) closeModal(); };
 
+    // --- Call Service Logic ---
+    window.callService = function(orderId) {
+        const orders = JSON.parse(localStorage.getItem('pizzaOrders')) || [];
+        const idx = orders.findIndex(o => o.id === orderId);
+        if (idx > -1) {
+            orders[idx].serviceCalled = true;
+            localStorage.setItem('pizzaOrders', JSON.stringify(orders));
+            alert('Yêu cầu phục vụ đã được gửi!');
+        }
+    };
+
     function initOrderTracking() {
         const orderListContainer = document.getElementById('order-tracking-list');
         if (!orderListContainer) return;
@@ -182,8 +193,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     action = `<div class="flex justify-between items-end mb-2"><div class="flex items-center gap-1.5 text-text-secondary"><span class="material-symbols-outlined text-[18px]">timer</span><span class="text-sm font-medium">${Math.floor((cookingTime - elapsed)/60)}:${((cookingTime - elapsed)%60).toString().padStart(2,'0')}</span></div><span class="text-xs font-bold text-primary">${Math.floor(progress)}%</span></div><div class="w-full bg-gray-100 dark:bg-gray-800 rounded-full h-2 overflow-hidden"><div class="bg-primary h-2 rounded-full" style="width: ${progress}%"></div></div>`;
                 } else {
                     if (order.tableInfo) {
-                        badge = `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400"><span class="material-symbols-outlined text-[14px]">check_circle</span>Sẵn sàng</span>`;
-                        action = `<button onclick="alert('Gọi món thành công!')" class="w-full bg-primary text-white py-2.5 rounded-lg text-sm font-bold shadow-md"> Gọi phục vụ</button>`;
+                        badge = `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-blue-400"><span class="material-symbols-outlined text-[14px]">check_circle</span>Sẵn sàng</span>`;
+                        if (order.serviceCalled) {
+                            action = `<button class="w-full bg-green-600 text-white py-2.5 rounded-lg text-sm font-bold shadow-md cursor-default">Đã thành công</button>`;
+                        } else {
+                            action = `<button onclick="window.callService('${order.id}')" class="w-full bg-primary text-white py-2.5 rounded-lg text-sm font-bold shadow-md"> Gọi phục vụ</button>`;
+                        }
                     } else {
                         if (elapsed < deliveryTime) {
                             progress = ((elapsed - cookingTime) / (deliveryTime - cookingTime)) * 100;
@@ -271,6 +286,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function finalizeOrder(message) {
+        if (localStorage.getItem('isLoggedIn') !== 'true') {
+            alert('Bạn cần đăng nhập để đặt hàng!');
+            window.location.href = getRootPath() + 'account/my-account.html';
+            return;
+        }
         const cart = getCart();
         if (cart.length === 0) return;
         const orderData = {
@@ -288,7 +308,12 @@ document.addEventListener('DOMContentLoaded', function () {
         localStorage.setItem('pizzaOrders', JSON.stringify(history));
         alert(message);
         localStorage.removeItem('pizzaCart');
-        window.location.href = getRootPath() + 'account/donhang.html';
+        
+        if (localStorage.getItem('isAdmin') === 'true') {
+            window.location.href = getRootPath() + 'account/donhang.html';
+        } else {
+            window.location.href = getRootPath() + 'TrackOrder/trackorder.html';
+        }
     }
 
     function renderCart() {
@@ -381,6 +406,30 @@ document.addEventListener('DOMContentLoaded', function () {
     renderCheckoutOrderReview();
     initOrderTracking();
     initModalClose();
+
+    // --- Login/Logout Navigation Sync ---
+    function updateNavigation() {
+        const accountLink = document.querySelector('#menu-item-113 a');
+        if (!accountLink) return;
+
+        if (localStorage.getItem('isLoggedIn') === 'true') {
+            const user = JSON.parse(localStorage.getItem('currentUser') || '{}');
+            accountLink.textContent = 'Đăng xuất (' + (user.fullname || user.username || 'User') + ')';
+            accountLink.href = '#';
+            accountLink.onclick = (e) => {
+                e.preventDefault();
+                if (confirm('Bạn có chắc chắn muốn đăng xuất?')) {
+                    localStorage.removeItem('isLoggedIn');
+                    localStorage.removeItem('isAdmin');
+                    localStorage.removeItem('userRole');
+                    localStorage.removeItem('currentUser');
+                    window.location.href = getRootPath() + 'index.html';
+                }
+            };
+        }
+    }
+    updateNavigation();
+
     if (document.getElementById('admin-order-count')) {
         const orders = JSON.parse(localStorage.getItem('pizzaOrders')) || [];
         document.getElementById('admin-order-count').textContent = orders.length;
